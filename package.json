@@ -1,8 +1,8 @@
 {
-    "name": "message",
+    "name": "@lifeorlife/message",
     "version": "0.0.1",
     "description": "pop up the message that you entered",
-    "main": "main.ts",
+    "main": "index.ts",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -18,6 +18,9 @@
     ],
     "author": "btea",
     "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "bugs": {
         "url": "https://github.com/LifeOrLife/message/issues"
     },

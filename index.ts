@@ -2,7 +2,7 @@ type msg = string;
 type Options = {
     text: string;
     duration: number;
-    type: string;
+    style?: style;
 };
 type style = {
     [key: string]: string | number;
@@ -10,41 +10,46 @@ type style = {
 
 export default function LLmessage(params: msg | Options) {
     let msg: string,
-        time: number = 3000;
+        time: number = 3000,
+        style: style | undefined;
     if (typeof params === 'string') {
         msg = params;
     } else {
         msg = params.text;
         time = params.duration || 3000;
+        style = params.style;
     }
     if (!msg) {
         return;
     }
-    popupMsg(msg, time);
+    popupMsg(msg, time, style);
 }
 
-function popupMsg(msg: string, time: number) {
-    const style: style = {
+function popupMsg(msg: string, time: number, style?: style) {
+    const _style: style = {
         padding: '5px 10px',
         'border-radius': '5px',
         background: '#ccc',
         color: '#fff',
         'max-width': '80%',
         position: 'fixed',
-        'margin-top': '-50px',
-        top: '50px',
+        top: '0',
         left: '50%',
         transform: 'translateX(-50%)',
+        opacity: 0,
         transition: 'all .3s',
         'word-break': 'break-all'
     };
     const box = document.createElement('div');
     box.innerText = msg;
-    Object.assign(box.style, style);
+    Object.assign(box.style, { ..._style, ...style });
     document.body.appendChild(box);
-    box.style.marginTop = '0';
     setTimeout(() => {
-        box.style.marginTop = '-50px';
+        box.style.top = '50px';
+        box.style.opacity = '1';
+    });
+    setTimeout(() => {
+        box.style.top = '0';
         setTimeout(() => {
             document.body.removeChild(box);
         }, 300);
