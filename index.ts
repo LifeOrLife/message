@@ -1,7 +1,7 @@
 type msg = string;
 type Options = {
     text: string;
-    duration: number;
+    duration?: number;
     style?: style;
 };
 type style = {
