@@ -1,6 +1,6 @@
 {
     "name": "@lifeorlife/message",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "pop up the message that you entered",
     "main": "index.ts",
     "type": "module",
