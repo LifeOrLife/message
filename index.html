@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>popup message</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <input type="text" class="msg">
+    <!-- <script type="module" src="./index.ts"></script> -->
+    <script type="module">
+        import LLmessage from './index.ts'
+        const btn = document.querySelector('button')
+        btn.addEventListener('click', startPopup)
+        function startPopup() {
+            const ip = document.querySelector('.msg')
+            LLmessage(ip.value || '这是一条信息')
+        }
+    </script>
+</body>
+
+</html>
