@@ -3,7 +3,7 @@ type Options = {
     text: string;
     duration?: number;
     style?: style;
-    devitation?: number;
+    deviation?: number;
 };
 type style = {
     [key: string]: string | number;
@@ -20,7 +20,7 @@ export default function LLmessage(params: msg | Options) {
         msg = params.text;
         time = params.duration || 3000;
         style = params.style;
-        dev = params.devitation || 30;
+        dev = params.deviation || 30;
     }
     if (!msg) {
         return;
@@ -36,10 +36,10 @@ function popupMsg(msg: string, time: number, dev: number, style?: style) {
         color: '#fff',
         'max-width': '80%',
         position: 'fixed',
-        top: '0',
+        top: 0,
         left: '50%',
-        transform: 'translateX(-50%)',
-        transition: 'all .3s',
+        transform: 'translateX(-50%) translateY(-100%)',
+        transition: 'all 300ms',
         'word-break': 'break-all',
         'font-size': '14px'
     };
@@ -52,8 +52,14 @@ function popupMsg(msg: string, time: number, dev: number, style?: style) {
     })
     setTimeout(() => {
         box.style.top = '0';
+        let dur: number | string = box.style.transitionDuration
+        if (/ms$/.test(dur)) {
+            dur = parseFloat(dur)
+        }else {
+            dur = parseFloat(dur) * 1000
+        }
         setTimeout(() => {
             document.body.removeChild(box);
-        }, 300);
+        }, dur);
     }, time);
 }

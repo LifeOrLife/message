@@ -16,7 +16,17 @@
         const btn = document.querySelector('button')
         const text = document.querySelector('input')
         btn.addEventListener('click', () => {
-            LLmessage(text.value || 'This is a message')
+            // LLmessage(text.value || 'This is a message')
+            LLmessage({
+                text: text.value || 'This is a message',
+                style: {
+                    color: '#fff',
+                    background: '#6cf',
+                    transition: 'all .5s',
+                    padding: '10px 15px'
+                },
+                deviation: 100
+            })
         })
     </script>
 </body>
