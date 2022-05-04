@@ -39,7 +39,7 @@ function popupMsg(msg: string, time: number, dev: number, style?: style) {
         top: 0,
         left: '50%',
         transform: 'translateX(-50%) translateY(-100%)',
-        transition: 'all 300ms',
+        transition: 'all 100ms',
         'word-break': 'break-all',
         'font-size': '14px'
     };
@@ -49,14 +49,14 @@ function popupMsg(msg: string, time: number, dev: number, style?: style) {
     document.body.appendChild(box);
     setTimeout(() => {
         box.style.top = `${dev}px`;
-    })
+    });
     setTimeout(() => {
         box.style.top = '0';
-        let dur: number | string = box.style.transitionDuration
+        let dur: number | string = box.style.transitionDuration;
         if (/ms$/.test(dur)) {
-            dur = parseFloat(dur)
-        }else {
-            dur = parseFloat(dur) * 1000
+            dur = parseFloat(dur);
+        } else {
+            dur = parseFloat(dur) * 1000;
         }
         setTimeout(() => {
             document.body.removeChild(box);
